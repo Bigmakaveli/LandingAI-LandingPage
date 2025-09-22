@@ -62,88 +62,7 @@ document.addEventListener('DOMContentLoaded', function() {
         observer.observe(el);
     });
     
-    // Chat interface simulation
-    const chatMessages = document.querySelector('.chat-messages');
-    const chatInput = document.querySelector('.chat-input input');
-    const sendBtn = document.querySelector('.send-btn');
-    
-    if (chatMessages && chatInput && sendBtn) {
-        // Simulate typing animation
-        function simulateTyping() {
-            const typingMessage = document.querySelector('.typing-indicator').parentElement;
-            setTimeout(() => {
-                typingMessage.innerHTML = `
-                    <p>Perfect! I've created a stunning dark-themed landing page with:</p>
-                    <ul style="margin-top: 0.5rem; padding-left: 1rem;">
-                        <li>Modern gradient backgrounds</li>
-                        <li>Smooth scroll animations</li>
-                        <li>Responsive mobile design</li>
-                        <li>Interactive hover effects</li>
-                    </ul>
-                    <p style="margin-top: 0.5rem;">Would you like me to add any specific features or modify the design?</p>
-                `;
-            }, 2000);
-        }
-        
-        // Start simulation after page load
-        setTimeout(simulateTyping, 3000);
-        
-        // Handle chat input
-        function sendMessage() {
-            const message = chatInput.value.trim();
-            if (message) {
-                // Add user message
-                const userMessage = document.createElement('div');
-                userMessage.className = 'message user-message';
-                userMessage.innerHTML = `<p>${message}</p>`;
-                chatMessages.appendChild(userMessage);
-                
-                // Clear input
-                chatInput.value = '';
-                
-                // Scroll to bottom
-                chatMessages.scrollTop = chatMessages.scrollHeight;
-                
-                // Simulate AI response
-                setTimeout(() => {
-                    const aiMessage = document.createElement('div');
-                    aiMessage.className = 'message ai-message';
-                    aiMessage.innerHTML = `
-                        <p>Great idea! Let me implement that for you...</p>
-                        <div class="typing-indicator">
-                            <span></span>
-                            <span></span>
-                            <span></span>
-                        </div>
-                    `;
-                    chatMessages.appendChild(aiMessage);
-                    chatMessages.scrollTop = chatMessages.scrollHeight;
-                    
-                    // Replace typing with response
-                    setTimeout(() => {
-                        aiMessage.innerHTML = `
-                            <p>Perfect! I've updated your website with those changes. The new features include:</p>
-                            <ul style="margin-top: 0.5rem; padding-left: 1rem;">
-                                <li>Enhanced animations</li>
-                                <li>Improved user experience</li>
-                                <li>Better mobile responsiveness</li>
-                            </ul>
-                            <p style="margin-top: 0.5rem;">Is there anything else you'd like to modify?</p>
-                        `;
-                        chatMessages.scrollTop = chatMessages.scrollHeight;
-                    }, 2000);
-                }, 1000);
-            }
-        }
-        
-        sendBtn.addEventListener('click', sendMessage);
-        chatInput.addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') {
-                sendMessage();
-            }
-        });
-    }
-    
+    // Chat assistant removed
     // Pricing card hover effects
     const pricingCards = document.querySelectorAll('.pricing-card');
     pricingCards.forEach(card => {
@@ -384,7 +303,6 @@ document.addEventListener('DOMContentLoaded', function() {
     Features:
     ✨ Responsive design
     🎨 Modern animations
-    💬 Interactive chat simulation
     📱 Mobile-first approach
     ⚡ Performance optimized
     

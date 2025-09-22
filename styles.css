@@ -256,147 +256,106 @@ body {
     margin-top: 0.25rem;
 }
 
-/* Chat Interface */
+/* Hero Preview Card */
 .hero-visual {
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.chat-interface {
+.preview-card {
     background: white;
     border-radius: var(--border-radius-lg);
     box-shadow: var(--shadow-xl);
+    border: 1px solid var(--border-color);
     width: 100%;
-    max-width: 400px;
+    max-width: 480px;
     overflow: hidden;
     animation: float 6s ease-in-out infinite;
+}
+
+.preview-header {
+    background: var(--gradient-primary);
+    color: white;
+    padding: 1rem 1.25rem;
+}
+
+.preview-header .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: rgba(255, 255, 255, 0.18);
+    border-radius: 999px;
+    padding: 0.25rem 0.75rem;
+    font-size: 0.8rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.preview-header h4 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin: 0.25rem 0 0;
+}
+
+.preview-header p {
+    opacity: 0.9;
+    margin: 0.25rem 0 0;
+    font-size: 0.9rem;
+}
+
+.preview-body {
+    padding: 1.25rem;
+    background: #fff;
+}
+
+.preview-skeleton {
+    display: grid;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.skeleton-line {
+    height: 10px;
+    background: linear-gradient(90deg, #f3f4f6, #eef2ff, #f3f4f6);
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite;
+    border-radius: 6px;
+}
+
+.skeleton-line.w40 { width: 40%; }
+.skeleton-line.w60 { width: 60%; }
+.skeleton-line.w80 { width: 80%; }
+.skeleton-line.w90 { width: 90%; }
+
+.checklist {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 0.5rem;
+}
+
+.checklist li {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+}
+
+.checklist i {
+    color: var(--primary-color);
+}
+
+@keyframes shimmer {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
 }
 
 @keyframes float {
     0%, 100% { transform: translateY(0); }
     50% { transform: translateY(-10px); }
-}
-
-.chat-header {
-    background: var(--gradient-primary);
-    color: white;
-    padding: 1rem;
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-}
-
-.chat-avatar {
-    width: 40px;
-    height: 40px;
-    background: rgba(255, 255, 255, 0.2);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.2rem;
-}
-
-.chat-info h4 {
-    font-size: 1rem;
-    font-weight: 600;
-    margin-bottom: 0.25rem;
-}
-
-.status {
-    font-size: 0.8rem;
-    opacity: 0.8;
-}
-
-.chat-messages {
-    padding: 1rem;
-    height: 200px;
-    overflow-y: auto;
-    background: #f8fafc;
-}
-
-.message {
-    margin-bottom: 1rem;
-    padding: 0.75rem;
-    border-radius: var(--border-radius);
-    max-width: 80%;
-}
-
-.ai-message {
-    background: white;
-    border: 1px solid var(--border-color);
-    margin-right: auto;
-}
-
-.user-message {
-    background: var(--primary-color);
-    color: white;
-    margin-left: auto;
-}
-
-.typing-indicator {
-    display: flex;
-    gap: 4px;
-    margin-top: 0.5rem;
-}
-
-.typing-indicator span {
-    width: 8px;
-    height: 8px;
-    background: var(--primary-color);
-    border-radius: 50%;
-    animation: typing 1.4s infinite ease-in-out;
-}
-
-.typing-indicator span:nth-child(2) {
-    animation-delay: 0.2s;
-}
-
-.typing-indicator span:nth-child(3) {
-    animation-delay: 0.4s;
-}
-
-@keyframes typing {
-    0%, 60%, 100% { transform: translateY(0); }
-    30% { transform: translateY(-10px); }
-}
-
-.chat-input {
-    padding: 1rem;
-    background: white;
-    border-top: 1px solid var(--border-color);
-    display: flex;
-    gap: 0.5rem;
-}
-
-.chat-input input {
-    flex: 1;
-    border: 1px solid var(--border-color);
-    border-radius: var(--border-radius);
-    padding: 0.75rem;
-    font-size: 0.9rem;
-    outline: none;
-    transition: var(--transition);
-}
-
-.chat-input input:focus {
-    border-color: var(--primary-color);
-    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
-}
-
-.send-btn {
-    background: var(--primary-color);
-    color: white;
-    border: none;
-    border-radius: var(--border-radius);
-    padding: 0.75rem;
-    cursor: pointer;
-    transition: var(--transition);
-}
-
-.send-btn:hover {
-    background: var(--primary-dark);
 }
 
 /* Section Styles */
