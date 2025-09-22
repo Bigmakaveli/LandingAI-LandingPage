@@ -817,6 +817,23 @@ body {
     color: white;
 }
 
+/* Gradient Titles */
+.hero-title,
+.section-header h2,
+.feature-card h3,
+.step-content h3,
+.pricing-header h3,
+.footer-section h4,
+.privacy-header h1,
+.privacy-content h2,
+.privacy-content h3 {
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
     .nav-menu {
