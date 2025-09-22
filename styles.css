@@ -358,6 +358,12 @@ body {
     50% { transform: translate3d(0, -10px, 0); }
 }
 
+@media (prefers-reduced-motion: reduce) {
+    .preview-card {
+        animation: none !important;
+    }
+}
+
 /* Section Styles */
 .section-header {
     text-align: center;
