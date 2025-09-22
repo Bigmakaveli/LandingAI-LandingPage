@@ -26,6 +26,7 @@
     --border-radius: 8px;
     --border-radius-lg: 12px;
     --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --nav-height: 120px;
 }
 
 body {
@@ -64,7 +65,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    height: 120px;
+    height: var(--nav-height);
 }
 
 .nav-logo {
@@ -81,8 +82,8 @@ body {
 }
 
 .nav-logo img {
-    width: 120px;
-    height: auto;
+    height: var(--nav-height);
+    width: auto;
     display: block;
 }
 
@@ -184,7 +185,7 @@ body {
 
 /* Hero Section */
 .hero {
-    padding: 120px 0 80px;
+    padding: calc(var(--nav-height) + 0px) 0 80px;
     background: linear-gradient(135deg, rgba(236,72,153,0.10) 0%, rgba(249,115,22,0.10) 50%, rgba(59,130,246,0.10) 100%);
     position: relative;
     overflow: hidden;
@@ -818,7 +819,7 @@ body {
     .nav-menu {
         display: none;
         position: absolute;
-        top: 120px;
+        top: var(--nav-height);
         left: 0;
         right: 0;
         flex-direction: column;
