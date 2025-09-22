@@ -240,7 +240,7 @@ document.addEventListener('DOMContentLoaded', function() {
             
             videoContainer.innerHTML = `
                 <div style="text-align: center;">
-                    <i class="fas fa-play-circle" style="font-size: 4rem; margin-bottom: 1rem; color: #6366f1;"></i>
+                    <i class="fas fa-play-circle" style="font-size: 4rem; margin-bottom: 1rem; color: var(--primary-color);"></i>
                     <p>Interactive Demo Video</p>
                     <p style="font-size: 0.9rem; opacity: 0.7; margin-top: 0.5rem;">Click anywhere to close</p>
                 </div>
