@@ -616,6 +616,13 @@ body {
     margin-bottom: 2rem;
 }
 
+.plan-note {
+    text-align: center;
+    color: var(--text-secondary);
+    font-weight: 600;
+    margin-top: -0.25rem;
+}
+
 .pricing-header h3 {
     font-size: 1.5rem;
     font-weight: 600;
