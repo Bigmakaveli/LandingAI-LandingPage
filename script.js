@@ -241,8 +241,8 @@ document.addEventListener('DOMContentLoaded', function() {
             videoContainer.innerHTML = `
                 <div style="text-align: center;">
                     <i class="fas fa-play-circle" style="font-size: 4rem; margin-bottom: 1rem; color: var(--primary-color);"></i>
-                    <p>Interactive Demo Video</p>
-                    <p style="font-size: 0.9rem; opacity: 0.7; margin-top: 0.5rem;">Click anywhere to close</p>
+                    <p>סרטון הדגמה אינטראקטיבי</p>
+                    <p style="font-size: 0.9rem; opacity: 0.7; margin-top: 0.5rem;">לחיצה בכל מקום תסגור</p>
                 </div>
             `;
             
@@ -295,18 +295,18 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Console welcome message
     console.log(`
-    🚀 Welcome to LandingAI!
+    🚀 ברוכים הבאים ל-LandingAI!
     
-    This landing page showcases our AI-powered website builder.
-    Built with modern web technologies and best practices.
+    דף נחיתה זה מציג את בונה האתרים שלנו מבוסס הבינה המלאכותית.
+    נבנה עם טכנולוגיות ווב מודרניות וסטנדרטים מובילים.
     
-    Features:
-    ✨ Responsive design
-    🎨 Modern animations
-    📱 Mobile-first approach
-    ⚡ Performance optimized
+    תכונות:
+    ✨ עיצוב רספונסיבי
+    🎨 אנימציות מודרניות
+    📱 גישה Mobile-first
+    ⚡ ביצועים מיטביים
     
-    Ready to build your dream website? Let's get started!
+    מוכנים לבנות את אתר החלומות שלכם? בואו נתחיל!
     `);
 });
 
