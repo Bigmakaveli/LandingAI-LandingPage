@@ -79,6 +79,12 @@ body {
     font-size: 1.8rem;
 }
 
+.nav-logo img {
+    height: 28px;
+    width: auto;
+    display: block;
+}
+
 .nav-menu {
     display: flex;
     align-items: center;
