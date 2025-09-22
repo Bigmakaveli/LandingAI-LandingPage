@@ -82,9 +82,11 @@ body {
 }
 
 .nav-logo img {
-    height: var(--nav-height);
+    max-height: calc(var(--nav-height) - 24px);
+    height: auto;
     width: auto;
     display: block;
+    object-fit: contain;
 }
 
 .nav-menu {
