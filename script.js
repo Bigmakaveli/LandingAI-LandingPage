@@ -44,17 +44,66 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
     
-    // Navbar background change on scroll
+    // Navbar background change on scroll + Back-to-top button
     const navbar = document.querySelector('.navbar');
+
+    // Create sticky back-to-top button (uses the site logo by default)
+    const backToTopBtn = document.createElement('button');
+    backToTopBtn.className = 'back-to-top';
+    backToTopBtn.setAttribute('aria-label', 'חזרה לראש העמוד');
+    const logoImg = document.querySelector('.nav-logo img');
+    if (logoImg && logoImg.src) {
+        const img = document.createElement('img');
+        img.src = logoImg.src;
+        img.alt = 'Back to top';
+        backToTopBtn.appendChild(img);
+    } else {
+        backToTopBtn.innerHTML = '<i class="fas fa-arrow-up"></i>';
+    }
+    document.body.appendChild(backToTopBtn);
+
+    // Scroll to top on click
+    backToTopBtn.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    // Toggle UI on scroll (navbar style + button visibility)
+    const toggleUiOnScroll = () => {
+        const y = window.scrollY || document.documentElement.scrollTop || 0;
+
+        if (navbar) {
+            if (y > 50) {
+                navbar.style.background = 'rgba(255, 255, 255, 0.98)';
+                navbar.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.1)';
+            } else {
+                navbar.style.background = 'rgba(255, 255, 255, 0.95)';
+                navbar.style.boxShadow = 'none';
+            }
+        }
+
+        if (backToTopBtn) {
+            if (y > 400) {
+                backToTopBtn.classList.add('show');
+            } else {
+                backToTopBtn.classList.remove('show');
+            }
+        }
+    };
+
+    // Throttle using rAF
+    let ticking = false;
     window.addEventListener('scroll', function() {
-        if (window.scrollY > 50) {
-            navbar.style.background = 'rgba(255, 255, 255, 0.98)';
-            navbar.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.1)';
-        } else {
-            navbar.style.background = 'rgba(255, 255, 255, 0.95)';
-            navbar.style.boxShadow = 'none';
+        if (!ticking) {
+            window.requestAnimationFrame(() => {
+                toggleUiOnScroll();
+                ticking = false;
+            });
+            ticking = true;
         }
     });
+
+    // Apply initial state on load
+    toggleUiOnScroll();
     
     // Intersection Observer for animations
     const observerOptions = {
