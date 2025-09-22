@@ -50,7 +50,7 @@ body {
     top: 0;
     left: 0;
     right: 0;
-    padding: 0.5rem 0;
+    padding: 1rem 0;
     background: rgba(255, 255, 255, 0.95);
     backdrop-filter: blur(10px);
     border-bottom: 1px solid var(--border-color);
@@ -83,7 +83,7 @@ body {
 }
 
 .nav-logo img {
-    max-height: clamp(18px, calc((var(--nav-height) - 48px) * 0.3), 30px);
+    max-height: clamp(36px, calc((var(--nav-height) - 48px) * 0.6), 60px);
     height: auto;
     width: auto;
     display: block;
