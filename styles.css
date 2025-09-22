@@ -1033,6 +1033,8 @@ html {
     max-height: 70%;
     object-fit: contain;
     display: block;
+    transform: scale(1.15);
+    transform-origin: center;
 }
 
 .back-to-top i {
