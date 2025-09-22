@@ -47,19 +47,17 @@ document.addEventListener('DOMContentLoaded', function() {
     // Navbar background change on scroll + Back-to-top button
     const navbar = document.querySelector('.navbar');
 
-    // Create sticky back-to-top button (uses the site logo by default)
+    // Create sticky back-to-top button (uses provided image)
     const backToTopBtn = document.createElement('button');
     backToTopBtn.className = 'back-to-top';
     backToTopBtn.setAttribute('aria-label', 'חזרה לראש העמוד');
-    const logoImg = document.querySelector('.nav-logo img');
-    if (logoImg && logoImg.src) {
-        const img = document.createElement('img');
-        img.src = logoImg.src;
-        img.alt = 'Back to top';
-        backToTopBtn.appendChild(img);
-    } else {
+    const img = document.createElement('img');
+    img.src = 'https://i.ibb.co/KpsgB651/cdeb8429e526.png';
+    img.alt = 'Back to top';
+    img.onerror = () => {
         backToTopBtn.innerHTML = '<i class="fas fa-arrow-up"></i>';
-    }
+    };
+    backToTopBtn.appendChild(img);
     document.body.appendChild(backToTopBtn);
 
     // Scroll to top on click
