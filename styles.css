@@ -271,7 +271,7 @@ body {
     width: 100%;
     max-width: 480px;
     overflow: hidden;
-    animation: float 6s ease-in-out infinite;
+    animation: floatY 6s ease-in-out infinite;
 }
 
 .preview-header {
@@ -353,7 +353,7 @@ body {
     100% { background-position: -200% 0; }
 }
 
-@keyframes float {
+@keyframes floatY {
     0%, 100% { transform: translateY(0); }
     50% { transform: translateY(-10px); }
 }
