@@ -82,7 +82,7 @@ body {
 }
 
 .nav-logo img {
-    max-height: calc(var(--nav-height) - 24px);
+    max-height: clamp(32px, calc(var(--nav-height) - 48px), 72px);
     height: auto;
     width: auto;
     display: block;
