@@ -21,7 +21,8 @@ document.addEventListener('DOMContentLoaded', function() {
             const targetSection = document.querySelector(targetId);
             
             if (targetSection) {
-                const offsetTop = targetSection.offsetTop - 70; // Account for fixed navbar
+                const navbarHeight = (document.querySelector('.navbar')?.offsetHeight) || 70;
+                const offsetTop = targetSection.offsetTop - navbarHeight; // Account for fixed navbar height
                 window.scrollTo({
                     top: offsetTop,
                     behavior: 'smooth'

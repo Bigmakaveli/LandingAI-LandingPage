@@ -64,7 +64,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    height: 70px;
+    height: 120px;
 }
 
 .nav-logo {
@@ -81,8 +81,8 @@ body {
 }
 
 .nav-logo img {
-    height: 40px;
-    width: auto;
+    width: 120px;
+    height: auto;
     display: block;
 }
 
@@ -818,7 +818,7 @@ body {
     .nav-menu {
         display: none;
         position: absolute;
-        top: 70px;
+        top: 120px;
         left: 0;
         right: 0;
         flex-direction: column;
