@@ -274,8 +274,8 @@ body {
 }
 
 @keyframes float {
-    0%, 100% { transform: translate3d(0, 0, 0); }
-    50% { transform: translate3d(0, -10px, 0); }
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
 }
 
 .chat-header {
@@ -358,8 +358,8 @@ body {
 }
 
 @keyframes typing {
-    0%, 60%, 100% { transform: translate3d(0, 0, 0); }
-    30% { transform: translate3d(0, -10px, 0); }
+    0%, 60%, 100% { transform: translateY(0); }
+    30% { transform: translateY(-10px); }
 }
 
 .chat-input {
