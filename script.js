@@ -4,11 +4,24 @@ document.addEventListener('DOMContentLoaded', function() {
     // Mobile Navigation Toggle
     const hamburger = document.querySelector('.hamburger');
     const navMenu = document.querySelector('.nav-menu');
+
+    // Ensure CSS variable matches actual navbar height (wraps content)
+    const updateNavHeight = () => {
+        const nav = document.querySelector('.navbar');
+        if (!nav) return;
+        const h = nav.offsetHeight;
+        document.documentElement.style.setProperty('--nav-height', h + 'px');
+    };
+    updateNavHeight();
+    window.addEventListener('resize', debounce(updateNavHeight, 150));
+    window.addEventListener('load', updateNavHeight);
     
     if (hamburger && navMenu) {
         hamburger.addEventListener('click', function() {
             hamburger.classList.toggle('active');
             navMenu.classList.toggle('active');
+            // Recalculate navbar height after menu toggle
+            setTimeout(updateNavHeight, 0);
         });
     }
     
