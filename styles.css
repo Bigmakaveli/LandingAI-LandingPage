@@ -27,6 +27,7 @@
     --border-radius-lg: 12px;
     --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     --nav-height: 120px;
+    --section-y: clamp(48px, 7vw, 96px);
 }
 
 body {
@@ -188,7 +189,7 @@ body {
 
 /* Hero Section */
 .hero {
-    padding: calc(var(--nav-height) + 0px) 0 80px;
+    padding: calc(var(--nav-height) + 0px) 0 0;
     background: linear-gradient(135deg, rgba(236,72,153,0.10) 0%, rgba(249,115,22,0.10) 50%, rgba(59,130,246,0.10) 100%);
     position: relative;
     overflow: hidden;
@@ -380,7 +381,7 @@ body {
 /* Section Styles */
 .section-header {
     text-align: center;
-    margin-bottom: 4rem;
+    margin-bottom: clamp(24px, 5vw, 48px);
 }
 
 .section-header h2 {
@@ -403,7 +404,7 @@ body {
 
 /* Features Section */
 .features {
-    padding: 80px 0;
+    padding: 0 0 var(--section-y);
     background: var(--bg-primary);
 }
 
@@ -455,7 +456,7 @@ body {
 
 /* How It Works Section */
 .how-it-works {
-    padding: 80px 0;
+    padding: var(--section-y) 0;
     background: var(--bg-secondary);
 }
 
@@ -501,7 +502,7 @@ body {
 
 /* Demo Section */
 .demo {
-    padding: 80px 0;
+    padding: var(--section-y) 0;
     background: var(--bg-primary);
 }
 
@@ -566,7 +567,7 @@ body {
 
 /* Pricing Section */
 .pricing {
-    padding: 80px 0;
+    padding: var(--section-y) 0;
     background: var(--bg-secondary);
 }
 
@@ -673,7 +674,7 @@ body {
 
 /* CTA Section */
 .cta {
-    padding: 80px 0;
+    padding: var(--section-y) 0;
     background: var(--gradient-primary);
     color: white;
     text-align: center;
