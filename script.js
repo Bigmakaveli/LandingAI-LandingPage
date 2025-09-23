@@ -184,7 +184,7 @@ document.addEventListener('DOMContentLoaded', function() {
             '.features-grid .feature-card:nth-child(3) p': { he: 'האתר נראה מצוין בכל מכשיר והעדכונים שלכם מתרעננים מיד.', en: 'Looks great on every device, updates refresh instantly.', ar: 'يبدو رائعًا على كل جهاز وتحديثاتك فورية.' },
 
             '.features-grid .feature-card:nth-child(4) h3': { he: 'בקרת גרסאות', en: 'Version control', ar: 'التحكم بالإصدارات' },
-            '.features-grid .feature-card:nth-child(4) p': { he: 'היסטוריית שינויים מלאה עם ביטול/חזרה בלחיצה, כולל פרסום ל‑GitHub.', en: 'Full history with undo/redo and GitHub publishing.', ar: 'سجل كامل مع تراجع/إعادة ونشر إلى GitHub.' },
+            '.features-grid .feature-card:nth-child(4) p': { he: 'היסטוריית שינויים מלאה עם ביטול/חזרה בלחיצה ופרסום מובנה.', en: 'Full change history with one‑click undo/redo and built‑in publishing.', ar: 'سجل تغييرات كامل مع تراجع/إعادة بنقرة واحدة ونشر مدمج.' },
 
             '.features-grid .feature-card:nth-child(5) h3': { he: 'מסד נתונים', en: 'Database', ar: 'قاعدة البيانات' },
             '.features-grid .feature-card:nth-child(5) p': { he: 'חיבור מהיר ל‑PostgreSQL וניטור נתונים בעזרת ה‑AI — בלי תצורה מורכבת.', en: 'Quick PostgreSQL hookup and AI‑assisted monitoring — no complex setup.', ar: 'ربط سريع بـ PostgreSQL ومراقبة بمساعدة الذكاء الاصطناعي — دون إعداد معقد.' },
