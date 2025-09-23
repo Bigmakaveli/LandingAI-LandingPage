@@ -15,6 +15,238 @@ document.addEventListener('DOMContentLoaded', function() {
     updateNavHeight();
     window.addEventListener('resize', debounce(updateNavHeight, 150));
     window.addEventListener('load', updateNavHeight);
+
+    // I18N: Language switching (he default, also ar/en)
+    const setDirAndTitle = (lang) => {
+        const isPrivacy = location.pathname.endsWith('privacy-policy.html');
+        document.documentElement.dir = (lang === 'en') ? 'ltr' : 'rtl';
+        document.documentElement.lang = lang;
+        const titles = {
+            he: isPrivacy ? 'מדיניות פרטיות - LandingAI' : 'LandingAI - בונה אתרים מבוסס בינה מלאכותית',
+            en: isPrivacy ? 'Privacy Policy - LandingAI' : 'LandingAI - AI Website Builder',
+            ar: isPrivacy ? 'سياسة الخصوصية - LandingAI' : 'LandingAI - مُنشئ مواقع بالذكاء الاصطناعي'
+        };
+        if (titles[lang]) document.title = titles[lang];
+    };
+
+    const applyI18nMap = (lang) => {
+        const isPrivacy = location.pathname.endsWith('privacy-policy.html');
+
+        const mapIndex = {
+            // Navbar (index)
+            'a.nav-link[href="#features"]': { he: 'תכונות', en: 'Features', ar: 'الميزات' },
+            'a.nav-link[href="#how-it-works"]': { he: 'איך זה עובד', en: 'How it works', ar: 'كيف يعمل' },
+            'a.nav-link[href="#demo"]': { he: 'הדגמה', en: 'Demo', ar: 'العرض' },
+            'a.nav-link[href="#pricing"]': { he: 'תמחור', en: 'Pricing', ar: 'التسعير' },
+            'a.nav-link[href="#contact"]': { he: 'צור קשר', en: 'Contact', ar: 'تواصل' },
+
+            // Hero
+            '.hero-title': {
+                he: 'עדכוני אתר עם AI <span class="gradient-text">בלחיצה אחת</span>',
+                en: 'Update your site with AI <span class="gradient-text">in one click</span>',
+                ar: 'تحديث موقعك بالذكاء الاصطناعي <span class="gradient-text">بنقرة واحدة</span>'
+            },
+            '.hero-description': {
+                he: 'ערכו טקסטים, תמונות ודפים בשיחה עם ה‑AI — השינויים מתעדכנים מיד וללא תלות במתכנת.',
+                en: 'Edit text, images and pages by chatting with AI — changes apply instantly, no developer needed.',
+                ar: 'حرر النصوص والصور والصفحات بالدردشة مع الذكاء الاصطناعي — التغييرات فورية وبدون مطور.'
+            },
+            '.hero-cta .btn-primary .btn-label': { he: 'התחילו לבנות עכשיו', en: 'Start building', ar: 'ابدأ الآن' },
+            '.hero-cta .btn-outline .btn-label': { he: 'צפו בהדגמה', en: 'Watch demo', ar: 'شاهد العرض' },
+
+            // Stats
+            '.hero-stats .stat:nth-child(1) .stat-label': { he: 'אתרים שנוצרו', en: 'Sites created', ar: 'مواقع مُنشأة' },
+            '.hero-stats .stat:nth-child(2) .stat-label': { he: 'מודלים של בינה מלאכותית', en: 'AI models', ar: 'نماذج ذكاء اصطناعي' },
+            '.hero-stats .stat:nth-child(3) .stat-label': { he: 'זמינות', en: 'Uptime', ar: 'جاهزية' },
+
+            // Preview card
+            '.preview-header .badge span': { he: 'AI Builder', en: 'AI Builder', ar: 'منشئ بالذكاء الاصطناعي' },
+            '.preview-header h4': { he: 'תצוגת עיצוב', en: 'Design preview', ar: 'معاينة التصميم' },
+            '.preview-header p': { he: 'פריסות יפות ורספונסיביות שנוצרו עבורכם', en: 'Beautiful, responsive layouts generated for you', ar: 'تصاميم جميلة ومتجاوبة تُنشأ لك' },
+            '.checklist li:nth-child(1) span': { he: 'קטע הירו עם גרדיאנט', en: 'Gradient hero section', ar: 'قسم بطل بتدرج' },
+            '.checklist li:nth-child(2) span': { he: 'אנימציות חלקות', en: 'Smooth animations', ar: 'حركات سلسة' },
+            '.checklist li:nth-child(3) span': { he: 'עיצוב מותאם לנייד', en: 'Mobile‑friendly design', ar: 'تصميم ملائم للجوال' },
+
+            // Features section header
+            '#features .section-header h2': { he: 'ניהול אתר עם AI', en: 'Manage your site with AI', ar: 'إدارة موقعك بالذكاء الاصطناعي' },
+            '#features .section-header p': {
+                he: 'שינויי תוכן בלחיצה ושדרוגים מיידיים — אתם מבקשים, ה‑AI מבצע.',
+                en: 'One‑click content edits and instant upgrades — you ask, the AI does.',
+                ar: 'تعديلات محتوى بنقرة واحدة وترقيات فورية — أنت تطلب والذكاء الاصطناعي ينفذ.'
+            },
+
+            // Feature cards (1..6)
+            '.features-grid .feature-card:nth-child(1) h3': { he: 'עריכה בשפה טבעית', en: 'Natural‑language editing', ar: 'تحرير باللغة الطبيعية' },
+            '.features-grid .feature-card:nth-child(1) p': { he: 'כותבים מה רוצים לשנות — ה‑AI מבצע ומעדכן את האתר עבורכם.', en: 'Write what you want to change — AI applies it and updates your site.', ar: 'اكتب ما تريد تغييره — يقوم الذكاء الاصطناعي بالتنفيذ وتحديث موقعك.' },
+
+            '.features-grid .feature-card:nth-child(2) h3': { he: 'קוד אוטומטי', en: 'Auto code', ar: 'كود تلقائي' },
+            '.features-grid .feature-card:nth-child(2) p': { he: 'ה‑AI מייצר קוד נקי ומהיר ומחיל את השינויים בלחיצה — בלי לגעת בקוד.', en: 'AI generates clean, fast code and applies changes — no manual coding.', ar: 'يُنشئ الذكاء الاصطناعي كودًا نظيفًا وسريعًا ويطبق التغييرات — دون كتابة يدوية.' },
+
+            '.features-grid .feature-card:nth-child(3) h3': { he: 'רספונסיבי אוטומטי', en: 'Auto responsive', ar: 'توافق تلقائي' },
+            '.features-grid .feature-card:nth-child(3) p': { he: 'האתר נראה מצוין בכל מכשיר והעדכונים שלכם מתרעננים מיד.', en: 'Looks great on every device, updates refresh instantly.', ar: 'يبدو رائعًا على كل جهاز وتحديثاتك فورية.' },
+
+            '.features-grid .feature-card:nth-child(4) h3': { he: 'בקרת גרסאות', en: 'Version control', ar: 'التحكم بالإصدارات' },
+            '.features-grid .feature-card:nth-child(4) p': { he: 'היסטוריית שינויים מלאה עם ביטול/חזרה בלחיצה, כולל פרסום ל‑GitHub.', en: 'Full history with undo/redo and GitHub publishing.', ar: 'سجل كامل مع تراجع/إعادة ونشر إلى GitHub.' },
+
+            '.features-grid .feature-card:nth-child(5) h3': { he: 'מסד נתונים', en: 'Database', ar: 'قاعدة البيانات' },
+            '.features-grid .feature-card:nth-child(5) p': { he: 'חיבור מהיר ל‑PostgreSQL וניטור נתונים בעזרת ה‑AI — בלי תצורה מורכבת.', en: 'Quick PostgreSQL hookup and AI‑assisted monitoring — no complex setup.', ar: 'ربط سريع بـ PostgreSQL ومراقبة بمساعدة الذكاء الاصطناعي — دون إعداد معقد.' },
+
+            '.features-grid .feature-card:nth-child(6) h3': { he: 'פריסה בלחיצה', en: 'One‑click deploy', ar: 'نشر بنقرة واحدة' },
+            '.features-grid .feature-card:nth-child(6) p': { he: 'פרסום מיידי עם תשתית אמינה ותמיכה ב‑Docker — מהרעיון לאוויר במהירות.', en: 'Instant publishing with reliable infra and Docker support — from idea to live fast.', ar: 'نشر فوري ببنية تحتية موثوقة ودعم Docker — من الفكرة إلى الإطلاق سريعًا.' },
+
+            // How it works
+            '#how-it-works .section-header h2': { he: 'איך זה עובד', en: 'How it works', ar: 'كيف يعمل' },
+            '#how-it-works .section-header p': { he: 'בונים, משפרים ומפרסמים בעזרת ה‑AI.', en: 'Build, improve and publish with AI.', ar: 'ابنِ وحسّن وانشر بمساعدة الذكاء الاصطناعي.' },
+
+            '#how-it-works .step:nth-child(1) h3': { he: 'תיאור קצר', en: 'Brief description', ar: 'وصف قصير' },
+            '#how-it-works .step:nth-child(1) p': { he: 'ספרו בשפה טבעית מה רוצים לשנות — בלי מונחים טכניים.', en: 'Describe in natural language what to change — no tech terms.', ar: 'اشرح باللغة الطبيعية ما تريد تغييره — دون مصطلحات تقنية.' },
+
+            '#how-it-works .step:nth-child(2) h3': { he: 'ה‑AI בונה', en: 'AI builds', ar: 'الذكاء الاصطناعي يبني' },
+            '#how-it-works .step:nth-child(2) p': { he: 'ה‑AI מייצר קוד נקי ומעדכן את האתר — הבעלות נשארת אצלכם.', en: 'AI generates clean code and updates the site — you keep ownership.', ar: 'ينشئ الذكاء الاصطناعي كودًا نظيفًا ويحدّث الموقع — والملكية تبقى لك.' },
+
+            '#how-it-works .step:nth-child(3) h3': { he: 'תצוגה ושיפור', en: 'Preview and refine', ar: 'معاينة وتحسين' },
+            '#how-it-works .step:nth-child(3) p': { he: 'רואים את השינויים מיד ומדייקים בלחיצה.', en: 'See changes instantly and fine‑tune with a click.', ar: 'شاهد التغييرات فورًا ودقّقها بنقرة.' },
+
+            '#how-it-works .step:nth-child(4) h3': { he: 'פרסום בלחיצה', en: 'One‑click publish', ar: 'نشر بنقرة واحدة' },
+            '#how-it-works .step:nth-child(4) p': { he: 'מפרסמים ושומרים על עדכונים שוטפים ללא מאמץ.', en: 'Publish and keep updates flowing effortlessly.', ar: 'انشر واستمر بالتحديث بسهولة.' },
+
+            // Demo
+            '#demo .section-header h2': { he: 'הדגמה', en: 'Demo', ar: 'العرض' },
+            '#demo .section-header p': { he: 'כך ה‑AI משנה טקסטים ותמונות באתר בזמן אמת, בלי מתכנת.', en: 'See AI update text and images live — no developer needed.', ar: 'شاهد الذكاء الاصطناعي يحدّث النصوص والصور مباشرة — دون مطور.' },
+            '.video-placeholder p': { he: 'סרטון הדגמה אינטראקטיבי', en: 'Interactive demo video', ar: 'فيديو عرض تفاعلي' },
+            '.demo-feature:nth-child(1) span': { he: 'יצירת קוד בזמן אמת', en: 'Real‑time code', ar: 'كود فوري' },
+            '.demo-feature:nth-child(2) span': { he: 'עדכוני תצוגה חיים', en: 'Live previews', ar: 'معاينات مباشرة' },
+            '.demo-feature:nth-child(3) span': { he: 'עריכה בשפה טבעית', en: 'Natural‑language editing', ar: 'تحرير باللغة الطبيعية' },
+            '.demo-feature:nth-child(4) span': { he: 'פריסה מיידית', en: 'Instant deploy', ar: 'نشر فوري' },
+
+            // Pricing
+            '#pricing .section-header h2': { he: 'תמחור מותאם', en: 'Tailored pricing', ar: 'تسعير مخصص' },
+            '#pricing .section-header p': { he: 'בונים הצעה מדויקת לצרכים שלכם — בלי תוויות מחיר מוצגות.', en: 'We tailor a plan to your needs — no public price tags.', ar: 'نُعدّ خطة تناسب احتياجاتك — دون أسعار معروضة.' },
+
+            '.pricing-card:nth-child(1) .pricing-header h3': { he: 'מתחילים', en: 'Starter', ar: 'مبتدئ' },
+            '.pricing-card:nth-child(1) .plan-note': { he: 'תמחור מותאם אישית', en: 'Custom pricing', ar: 'تسعير مخصص' },
+            '.pricing-card:nth-child(1) .pricing-features li:nth-child(1)': { he: '5 אתרים', en: '5 sites', ar: '5 مواقع' },
+            '.pricing-card:nth-child(1) .pricing-features li:nth-child(2)': { he: 'מודלי AI בסיסיים', en: 'Basic AI models', ar: 'نماذج ذكاء اصطناعي أساسية' },
+            '.pricing-card:nth-child(1) .pricing-features li:nth-child(3)': { he: 'תמיכה סטנדרטית', en: 'Standard support', ar: 'دعم قياسي' },
+            '.pricing-card:nth-child(1) .pricing-features li:nth-child(4)': { he: 'אינטגרציה ל-GitHub', en: 'GitHub integration', ar: 'تكامل مع GitHub' },
+
+            '.pricing-card.featured .pricing-badge': { he: 'Most Popular', en: 'Most Popular', ar: 'الأكثر شيوعًا' },
+            '.pricing-card.featured .pricing-header h3': { he: 'מקצועי', en: 'Pro', ar: 'احترافي' },
+            '.pricing-card.featured .plan-note': { he: 'תמחור מותאם אישית', en: 'Custom pricing', ar: 'تسعير مخصص' },
+            '.pricing-card.featured .pricing-features li:nth-child(1)': { he: 'אתרים ללא הגבלה', en: 'Unlimited sites', ar: 'مواقع غير محدودة' },
+            '.pricing-card.featured .pricing-features li:nth-child(2)': { he: 'מודלי AI מתקדמים', en: 'Advanced AI models', ar: 'نماذج ذكاء اصطناعي متقدمة' },
+            '.pricing-card.featured .pricing-features li:nth-child(3)': { he: 'תמיכה בעדיפות גבוהה', en: 'Priority support', ar: 'دعم أولوية' },
+            '.pricing-card.featured .pricing-features li:nth-child(4)': { he: 'אינטגרציה למסד נתונים', en: 'Database integration', ar: 'تكامل قاعدة بيانات' },
+            '.pricing-card.featured .pricing-features li:nth-child(5)': { he: 'דומיינים מותאמים אישית', en: 'Custom domains', ar: 'نطاقات مخصصة' },
+
+            '.pricing-card:nth-child(3) .pricing-header h3': { he: 'ארגוני', en: 'Enterprise', ar: 'مؤسسي' },
+            '.pricing-card:nth-child(3) .plan-note': { he: 'תמחור מותאם אישית', en: 'Custom pricing', ar: 'تسعير مخصص' },
+            '.pricing-card:nth-child(3) .pricing-features li:nth-child(1)': { he: 'הכול בחבילת המקצועי', en: 'Everything in Pro', ar: 'كل ما في الاحترافي' },
+            '.pricing-card:nth-child(3) .pricing-features li:nth-child(2)': { he: 'פתרון White‑label', en: 'White‑label solution', ar: 'حل بعلامة بيضاء' },
+            '.pricing-card:nth-child(3) .pricing-features li:nth-child(3)': { he: 'תמיכה ייעודית', en: 'Dedicated support', ar: 'دعم مخصص' },
+            '.pricing-card:nth-child(3) .pricing-features li:nth-child(4)': { he: 'אינטגרציות מותאמות', en: 'Custom integrations', ar: 'تكاملات مخصصة' },
+            '.pricing-card:nth-child(3) .pricing-features li:nth-child(5)': { he: 'התחייבות SLA', en: 'SLA commitment', ar: 'التزام SLA' },
+            '.pricing-card:nth-child(3) .btn .btn-label': { he: 'צור קשר עם המכירות', en: 'Contact sales', ar: 'تواصل مع المبيعات' },
+
+            // CTA
+            '.cta h2': { he: 'שולטים באתר עם AI', en: 'Master your site with AI', ar: 'سيطر على موقعك بالذكاء الاصطناعي' },
+            '.cta p': { he: 'מבקשים מה‑AI — והוא מעדכן תוכן, מבצעים ועיצוב מיד.', en: 'Ask the AI — it updates content, promos and design instantly.', ar: 'اطلب من الذكاء الاصطناعي — وسيحدّث المحتوى والعروض والتصميم فورًا.' },
+            '.cta .btn-primary .btn-label': { he: 'התחילו עכשיו', en: 'Get started', ar: 'ابدأ الآن' },
+            '.cta .btn-outline .btn-label': { he: 'תיאום הדגמה', en: 'Book a demo', ar: 'احجز عرضًا' },
+
+            // Footer
+            '.footer .footer-content .footer-section:nth-child(1) p': {
+                he: 'אתר עסקי בשליטה מלאה — עדכונים בלחיצה אחת עם AI, בלי מתכנת ובלי קוד.',
+                en: 'A business website in your control — one‑click updates with AI, no developer and no code.',
+                ar: 'موقع أعمال تحت سيطرتك — تحديثات بنقرة واحدة بالذكاء الاصطناعي، دون مطور أو كود.'
+            },
+            '.footer .footer-content .footer-section:nth-child(2) h4': { he: 'מוצר', en: 'Product', ar: 'المنتج' },
+            '.footer .footer-content .footer-section:nth-child(3) h4': { he: 'חברה', en: 'Company', ar: 'الشركة' },
+            '.footer .footer-content .footer-section:nth-child(4) h4': { he: 'משאבים', en: 'Resources', ar: 'الموارد' },
+
+            '.footer .footer-content .footer-section:nth-child(2) ul li:nth-child(1) a': { he: 'תכונות', en: 'Features', ar: 'الميزات' },
+            '.footer .footer-content .footer-section:nth-child(2) ul li:nth-child(2) a': { he: 'תמחור', en: 'Pricing', ar: 'التسعير' },
+            '.footer .footer-content .footer-section:nth-child(2) ul li:nth-child(3) a': { he: 'הדגמה', en: 'Demo', ar: 'العرض' },
+            '.footer .footer-content .footer-section:nth-child(2) ul li:nth-child(4) a': { he: 'API', en: 'API', ar: 'واجهة برمجة' },
+
+            '.footer .footer-content .footer-section:nth-child(3) ul li:nth-child(1) a': { he: 'אודות', en: 'About', ar: 'نبذة' },
+            '.footer .footer-content .footer-section:nth-child(3) ul li:nth-child(2) a': { he: 'בלוג', en: 'Blog', ar: 'مدونة' },
+            '.footer .footer-content .footer-section:nth-child(3) ul li:nth-child(3) a': { he: 'קריירה', en: 'Careers', ar: 'وظائف' },
+            '.footer .footer-content .footer-section:nth-child(3) ul li:nth-child(4) a': { he: 'צור קשר', en: 'Contact', ar: 'تواصل' },
+
+            '.footer .footer-content .footer-section:nth-child(4) ul li:nth-child(1) a': { he: 'תיעוד', en: 'Docs', ar: 'توثيق' },
+            '.footer .footer-content .footer-section:nth-child(4) ul li:nth-child(2) a': { he: 'מרכז עזרה', en: 'Help center', ar: 'مركز المساعدة' },
+            '.footer .footer-content .footer-section:nth-child(4) ul li:nth-child(3) a': { he: 'קהילה', en: 'Community', ar: 'المجتمع' },
+            '.footer .footer-content .footer-section:nth-child(4) ul li:nth-child(4) a': { he: 'סטטוס', en: 'Status', ar: 'الحالة' },
+
+            '.footer-bottom p': {
+                he: '© 2024 LandingAI. כל הזכויות שמורות.',
+                en: '© 2024 LandingAI. All rights reserved.',
+                ar: '© 2024 LandingAI. جميع الحقوق محفوظة.'
+            },
+            '.footer-bottom .footer-links a:nth-child(1)': { he: 'מדיניות פרטיות', en: 'Privacy Policy', ar: 'سياسة الخصوصية' },
+            '.footer-bottom .footer-links a:nth-child(2)': { he: 'תנאי שימוש', en: 'Terms of Use', ar: 'شروط الاستخدام' },
+            '.footer-bottom .footer-links a:nth-child(3)': { he: 'מדיניות קוקיות', en: 'Cookie Policy', ar: 'سياسة ملفات الارتباط' }
+        };
+
+        const mapPrivacy = {
+            // Navbar (privacy page)
+            'nav .nav-menu a[href="index.html"]': { he: 'בית', en: 'Home', ar: 'الرئيسية' },
+            'nav .nav-menu a[href="index.html#features"]': { he: 'תכונות', en: 'Features', ar: 'الميزات' },
+            'nav .nav-menu a[href="index.html#pricing"]': { he: 'תמחור', en: 'Pricing', ar: 'التسعير' },
+            'nav .nav-menu a[href="index.html#contact"]': { he: 'צור קשר', en: 'Contact', ar: 'تواصل' },
+
+            // Back link
+            '.back-link .link-label': { he: 'חזרה לדף הבית', en: 'Back to home', ar: 'الرجوع للصفحة الرئيسية' },
+
+            // Header
+            '.privacy-header h1': { he: 'מדיניות פרטיות', en: 'Privacy Policy', ar: 'سياسة الخصوصية' },
+            '.privacy-header p': {
+                he: 'הפרטיות שלכם חשובה לנו. מדיניות זו מסבירה כיצד אנו אוספים, משתמשים ומגנים על המידע שלכם.',
+                en: 'Your privacy matters to us. This policy explains how we collect, use and protect your information.',
+                ar: 'خصوصيتك تهمنا. توضح هذه السياسة كيفية جمع معلوماتك واستخدامها وحمايتها.'
+            }
+        };
+
+        const chosen = {};
+        const source = isPrivacy ? mapPrivacy : mapIndex;
+        Object.assign(chosen, source);
+
+        // Apply all selectors
+        Object.entries(chosen).forEach(([selector, values]) => {
+            const el = document.querySelector(selector);
+            if (!el) return;
+            const val = values[lang] ?? values['he'];
+            if (val == null) return;
+            if (val.includes && val.includes('<')) {
+                el.innerHTML = val;
+            } else {
+                el.textContent = val;
+            }
+        });
+    };
+
+    const setLanguage = (lang) => {
+        const allowed = ['he', 'en', 'ar'];
+        if (!allowed.includes(lang)) lang = 'he';
+        localStorage.setItem('lang', lang);
+        setDirAndTitle(lang);
+        applyI18nMap(lang);
+        // Toggle active state
+        document.querySelectorAll('.lang-btn').forEach(btn => {
+            btn.classList.toggle('active', btn.dataset.lang === lang);
+        });
+        // Re-measure navbar height after language change
+        setTimeout(updateNavHeight, 0);
+    };
+
+    // Bind language buttons
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+        btn.addEventListener('click', () => setLanguage(btn.dataset.lang));
+    });
+
+    // Initialize language (default Hebrew)
+    setLanguage(localStorage.getItem('lang') || 'he');
     
     if (hamburger && navMenu) {
         hamburger.addEventListener('click', function() {

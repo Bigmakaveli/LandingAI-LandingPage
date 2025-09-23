@@ -144,6 +144,37 @@ body {
     transition: var(--transition);
 }
 
+/* Language Switcher */
+.lang-switcher {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin: 0 0.5rem;
+}
+
+.lang-btn {
+    padding: 4px 8px;
+    font-size: 0.75rem;
+    border-radius: 999px;
+    border: 1px solid var(--border-color);
+    background: #ffffff;
+    color: var(--text-primary);
+    line-height: 1;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.lang-btn:hover {
+    border-color: var(--primary-color);
+    color: var(--primary-color);
+}
+
+.lang-btn.active {
+    background: var(--primary-color);
+    color: #ffffff;
+    border-color: transparent;
+}
+
 /* Buttons */
 .btn {
     display: inline-flex;
