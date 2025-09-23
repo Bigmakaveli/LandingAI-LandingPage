@@ -307,19 +307,6 @@ body {
     align-items: center;
 }
 
-.top-banner {
-    margin: 0 auto 1.5rem;
-}
-
-.top-banner-img {
-    width: 100%;
-    height: clamp(140px, 22vw, 260px);
-    object-fit: cover;
-    border-radius: var(--border-radius-lg);
-    border: 1px solid var(--border-color);
-    box-shadow: var(--shadow-xl);
-    display: block;
-}
 
 .preview-card {
     background: white;
