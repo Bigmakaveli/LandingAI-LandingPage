@@ -449,10 +449,87 @@ document.addEventListener('DOMContentLoaded', function() {
     }, observerOptions);
     
     // Observe elements for animation
-    const animatedElements = document.querySelectorAll('.feature-card, .step, .pricing-card, .demo-feature, .gallery-item');
+    const animatedElements = document.querySelectorAll('.feature-card, .step, .pricing-card, .demo-feature, .slide');
     animatedElements.forEach(el => {
         observer.observe(el);
     });
+
+    // Gallery slideshow
+    (function initGallerySlideshow() {
+        const gallery = document.querySelector('#gallery .slideshow');
+        if (!gallery) return;
+
+        const slides = Array.from(gallery.querySelectorAll('.slide'));
+        const dotsContainer = gallery.querySelector('.dots');
+        const prevBtn = gallery.querySelector('.prev');
+        const nextBtn = gallery.querySelector('.next');
+
+        let current = 0;
+        let timer = null;
+        const INTERVAL = 5000;
+
+        const goTo = (index) => {
+            if (!slides.length) return;
+            current = (index + slides.length) % slides.length;
+            slides.forEach((s, i) => {
+                s.classList.toggle('active', i === current);
+                s.setAttribute('aria-hidden', i === current ? 'false' : 'true');
+            });
+            const dots = dotsContainer ? Array.from(dotsContainer.children) : [];
+            dots.forEach((d, i) => d.classList.toggle('active', i === current));
+        };
+
+        const next = () => goTo(current + 1);
+        const prev = () => goTo(current - 1);
+
+        const start = () => {
+            stop();
+            timer = setInterval(next, INTERVAL);
+        };
+        const stop = () => {
+            if (timer) clearInterval(timer);
+            timer = null;
+        };
+
+        if (prevBtn) prevBtn.addEventListener('click', () => { prev(); start(); });
+        if (nextBtn) nextBtn.addEventListener('click', () => { next(); start(); });
+
+        if (dotsContainer && slides.length > 1) {
+            dotsContainer.innerHTML = slides.map((_, i) => `<button class="dot" aria-label="שקופית ${i+1}"></button>`).join('');
+            Array.from(dotsContainer.children).forEach((btn, i) => {
+                btn.addEventListener('click', () => { goTo(i); start(); });
+            });
+        }
+
+        // Keyboard navigation
+        gallery.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight') { next(); start(); }
+            if (e.key === 'ArrowLeft') { prev(); start(); }
+        });
+        gallery.setAttribute('tabindex', '0');
+
+        // Pause on hover
+        gallery.addEventListener('mouseenter', stop);
+        gallery.addEventListener('mouseleave', start);
+
+        // Swipe support
+        let touchStartX = null;
+        gallery.addEventListener('touchstart', (e) => {
+            touchStartX = e.changedTouches[0].clientX;
+        }, { passive: true });
+        gallery.addEventListener('touchend', (e) => {
+            if (touchStartX == null) return;
+            const dx = e.changedTouches[0].clientX - touchStartX;
+            if (Math.abs(dx) > 50) {
+                if (dx < 0) next(); else prev();
+                start();
+            }
+            touchStartX = null;
+        });
+
+        goTo(0);
+        if (slides.length > 1) start();
+    })();
     
     // Chat assistant removed
     // Pricing card hover effects

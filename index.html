@@ -237,13 +237,19 @@
                 <h2>גלריה</h2>
                 <p>דוגמאות עיצוב מתוך אתרים שבנינו עבור לקוחות.</p>
             </div>
-            <div class="gallery-grid">
-                <figure class="gallery-item">
-                    <img src="images/1758660798245_qd00w4qbze9.jpg" alt="דוגמת אתר - תצוגה 1" loading="lazy">
-                </figure>
-                <figure class="gallery-item">
-                    <img src="images/1758660798706_5refv6drtej.jpg" alt="דוגמת אתר - תצוגה 2" loading="lazy">
-                </figure>
+
+            <div class="slideshow" aria-label="גלריית תמונות" role="region">
+                <div class="slides">
+                    <div class="slide active">
+                        <img src="images/1758660798245_qd00w4qbze9.jpg" alt="דוגמת אתר - תצוגה 1" loading="lazy">
+                    </div>
+                    <div class="slide">
+                        <img src="images/1758660798706_5refv6drtej.jpg" alt="דוגמת אתר - תצוגה 2" loading="lazy">
+                    </div>
+                    <button class="prev" aria-label="הקודם" title="הקודם">&#10094;</button>
+                    <button class="next" aria-label="הבא" title="הבא">&#10095;</button>
+                </div>
+                <div class="dots" aria-label="בקרה על שקופיות"></div>
             </div>
         </div>
     </section>
