@@ -17,7 +17,36 @@ document.addEventListener('DOMContentLoaded', function() {
     window.addEventListener('load', updateNavHeight);
 
     // Update gradient palette dynamically from the provided image
+    // Cache once so colors remain consistent after the initial load
     (function applyImageGradient() {
+        const PALETTE_KEY = 'landingai.palette.v1';
+
+        const setRootPalette = (p) => {
+            const root = document.documentElement;
+            if (!p) return;
+            if (p.g1) root.style.setProperty('--g1', p.g1);
+            if (p.g1b) root.style.setProperty('--g1b', p.g1b);
+            if (p.g2a) root.style.setProperty('--g2a', p.g2a);
+            if (p.g2b) root.style.setProperty('--g2b', p.g2b);
+            if (p.g3) root.style.setProperty('--g3', p.g3);
+            if (p.primary) root.style.setProperty('--primary-color', p.primary);
+            if (p.secondary) root.style.setProperty('--secondary-color', p.secondary);
+            if (p.accent) root.style.setProperty('--accent-color', p.accent);
+            if (p.primaryDark) root.style.setProperty('--primary-dark', p.primaryDark);
+        };
+
+        // If a palette is already stored, apply it and exit (keeps it stable across sessions)
+        try {
+            const cached = localStorage.getItem(PALETTE_KEY);
+            if (cached) {
+                const palette = JSON.parse(cached);
+                setRootPalette(palette);
+                return;
+            }
+        } catch (e) {
+            // localStorage unavailable or JSON parse failed; fall through and compute once
+        }
+
         const src = 'images/1758654702837_2iu7cxjctu9.png';
         const img = new Image();
         img.crossOrigin = 'anonymous';
@@ -51,19 +80,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 const sB  = sampleRange(4 * q, w);
 
                 const toRgb = (arr) => `rgb(${arr[0]}, ${arr[1]}, ${arr[2]})`;
-                const root = document.documentElement;
-
-                // Set enhanced gradient stop variables
-                root.style.setProperty('--g1', toRgb(sP1));
-                root.style.setProperty('--g1b', toRgb(sP2));
-                root.style.setProperty('--g2a', toRgb(sY1));
-                root.style.setProperty('--g2b', toRgb(sY2));
-                root.style.setProperty('--g3', toRgb(sB));
-
-                // Derive main brand colors from the gradient stops (centered on yellow)
-                root.style.setProperty('--primary-color', toRgb(sY1));
-                root.style.setProperty('--secondary-color', toRgb(sP1));
-                root.style.setProperty('--accent-color', toRgb(sB));
 
                 // Slightly darker variant of primary for hover/scroll states
                 function darken(arr, factor) {
@@ -71,7 +87,26 @@ document.addEventListener('DOMContentLoaded', function() {
                     const clamp = (v) => Math.max(0, Math.min(255, Math.round(v)));
                     return `rgb(${clamp(r * factor)}, ${clamp(g * factor)}, ${clamp(b * factor)})`;
                 }
-                root.style.setProperty('--primary-dark', darken(sY1, 0.75));
+
+                const palette = {
+                    g1: toRgb(sP1),
+                    g1b: toRgb(sP2),
+                    g2a: toRgb(sY1),
+                    g2b: toRgb(sY2),
+                    g3: toRgb(sB),
+                    primary: toRgb(sY1),
+                    secondary: toRgb(sP1),
+                    accent: toRgb(sB),
+                    primaryDark: darken(sY1, 0.75)
+                };
+
+                setRootPalette(palette);
+
+                try {
+                    localStorage.setItem(PALETTE_KEY, JSON.stringify(palette));
+                } catch (_) {
+                    // Ignore storage failures (e.g., private mode)
+                }
             } catch (e) {
                 console.warn('Palette extraction failed:', e);
             }
