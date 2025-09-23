@@ -16,6 +16,63 @@ document.addEventListener('DOMContentLoaded', function() {
     window.addEventListener('resize', debounce(updateNavHeight, 150));
     window.addEventListener('load', updateNavHeight);
 
+    // Update gradient palette dynamically from the provided image
+    (function applyImageGradient() {
+        const src = 'images/1758654702837_2iu7cxjctu9.png';
+        const img = new Image();
+        img.crossOrigin = 'anonymous';
+        img.onload = function() {
+            try {
+                const w = 120, h = 1;
+                const canvas = document.createElement('canvas');
+                canvas.width = w; canvas.height = h;
+                const ctx = canvas.getContext('2d');
+                ctx.drawImage(img, 0, 0, w, h);
+                const data = ctx.getImageData(0, 0, w, h).data;
+
+                function sampleRange(x0, x1) {
+                    let r = 0, g = 0, b = 0, count = 0;
+                    for (let x = x0; x < x1; x++) {
+                        const i = (x * 4);
+                        r += data[i];
+                        g += data[i + 1];
+                        b += data[i + 2];
+                        count++;
+                    }
+                    return [Math.round(r / count), Math.round(g / count), Math.round(b / count)];
+                }
+
+                const s1 = sampleRange(0, Math.floor(w / 3));
+                const s2 = sampleRange(Math.floor(w / 3), Math.floor((2 * w) / 3));
+                const s3 = sampleRange(Math.floor((2 * w) / 3), w);
+
+                const toRgb = (arr) => `rgb(${arr[0]}, ${arr[1]}, ${arr[2]})`;
+                const root = document.documentElement;
+
+                // Set gradient stop variables
+                root.style.setProperty('--g1', toRgb(s1));
+                root.style.setProperty('--g2', toRgb(s2));
+                root.style.setProperty('--g3', toRgb(s3));
+
+                // Derive main brand colors from the gradient stops
+                root.style.setProperty('--primary-color', toRgb(s2));
+                root.style.setProperty('--secondary-color', toRgb(s1));
+                root.style.setProperty('--accent-color', toRgb(s3));
+
+                // Slightly darker variant of primary for hover/scroll states
+                function darken(arr, factor) {
+                    const [r, g, b] = arr;
+                    const clamp = (v) => Math.max(0, Math.min(255, Math.round(v)));
+                    return `rgb(${clamp(r * factor)}, ${clamp(g * factor)}, ${clamp(b * factor)})`;
+                }
+                root.style.setProperty('--primary-dark', darken(s2, 0.75));
+            } catch (e) {
+                console.warn('Palette extraction failed:', e);
+            }
+        };
+        img.src = src;
+    })();
+
     // I18N: Language switching (he default, also ar/en)
     const setDirAndTitle = (lang) => {
         const isPrivacy = location.pathname.endsWith('privacy-policy.html');
