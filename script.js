@@ -449,7 +449,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }, observerOptions);
     
     // Observe elements for animation
-    const animatedElements = document.querySelectorAll('.feature-card, .step, .pricing-card, .demo-feature');
+    const animatedElements = document.querySelectorAll('.feature-card, .step, .pricing-card, .demo-feature, .gallery-item');
     animatedElements.forEach(el => {
         observer.observe(el);
     });
