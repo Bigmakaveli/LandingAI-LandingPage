@@ -267,7 +267,8 @@ document.addEventListener('DOMContentLoaded', function() {
             
             if (targetSection) {
                 const navbarHeight = (document.querySelector('.navbar')?.offsetHeight) || 70;
-                const offsetTop = targetSection.offsetTop - navbarHeight; // Account for fixed navbar height
+                const topBannerHeight = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--top-banner-height')) || 0;
+                const offsetTop = targetSection.offsetTop - (navbarHeight + topBannerHeight); // Account for fixed navbar + top banner
                 window.scrollTo({
                     top: offsetTop,
                     behavior: 'smooth'
