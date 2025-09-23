@@ -42,22 +42,28 @@ document.addEventListener('DOMContentLoaded', function() {
                     return [Math.round(r / count), Math.round(g / count), Math.round(b / count)];
                 }
 
-                const s1 = sampleRange(0, Math.floor(w / 3));
-                const s2 = sampleRange(Math.floor(w / 3), Math.floor((2 * w) / 3));
-                const s3 = sampleRange(Math.floor((2 * w) / 3), w);
+                // Sample five segments to capture two pinks, two yellows and a blue
+                const q = Math.floor(w / 5);
+                const sP1 = sampleRange(0, q);
+                const sP2 = sampleRange(q, 2 * q);
+                const sY1 = sampleRange(2 * q, 3 * q);
+                const sY2 = sampleRange(3 * q, 4 * q);
+                const sB  = sampleRange(4 * q, w);
 
                 const toRgb = (arr) => `rgb(${arr[0]}, ${arr[1]}, ${arr[2]})`;
                 const root = document.documentElement;
 
-                // Set gradient stop variables
-                root.style.setProperty('--g1', toRgb(s1));
-                root.style.setProperty('--g2', toRgb(s2));
-                root.style.setProperty('--g3', toRgb(s3));
+                // Set enhanced gradient stop variables
+                root.style.setProperty('--g1', toRgb(sP1));
+                root.style.setProperty('--g1b', toRgb(sP2));
+                root.style.setProperty('--g2a', toRgb(sY1));
+                root.style.setProperty('--g2b', toRgb(sY2));
+                root.style.setProperty('--g3', toRgb(sB));
 
-                // Derive main brand colors from the gradient stops
-                root.style.setProperty('--primary-color', toRgb(s2));
-                root.style.setProperty('--secondary-color', toRgb(s1));
-                root.style.setProperty('--accent-color', toRgb(s3));
+                // Derive main brand colors from the gradient stops (centered on yellow)
+                root.style.setProperty('--primary-color', toRgb(sY1));
+                root.style.setProperty('--secondary-color', toRgb(sP1));
+                root.style.setProperty('--accent-color', toRgb(sB));
 
                 // Slightly darker variant of primary for hover/scroll states
                 function darken(arr, factor) {
@@ -65,7 +71,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     const clamp = (v) => Math.max(0, Math.min(255, Math.round(v)));
                     return `rgb(${clamp(r * factor)}, ${clamp(g * factor)}, ${clamp(b * factor)})`;
                 }
-                root.style.setProperty('--primary-dark', darken(s2, 0.75));
+                root.style.setProperty('--primary-dark', darken(sY1, 0.75));
             } catch (e) {
                 console.warn('Palette extraction failed:', e);
             }
