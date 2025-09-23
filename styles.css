@@ -27,7 +27,7 @@
     --border-radius-lg: 12px;
     --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     --nav-height: 120px;
-    --top-banner-height: clamp(44px, 8vw, 72px);
+    --top-banner-height: 0px;
     --section-y: clamp(48px, 7vw, 96px);
 }
 
