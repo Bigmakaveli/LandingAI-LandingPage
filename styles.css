@@ -305,6 +305,17 @@ body {
     line-height: 1.7;
 }
 
+.hero-note {
+    font-size: 1.05rem;
+    color: var(--text-primary);
+    margin: -0.25rem 0 1.5rem 0;
+    padding: 0.5rem 0.75rem;
+    border-inline-start: 4px solid var(--primary-color);
+    background: rgba(255, 255, 255, 0.6);
+    border-radius: 6px;
+    display: inline-block;
+}
+
 .hero-cta {
     display: flex;
     gap: 1rem;
