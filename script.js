@@ -218,7 +218,7 @@ document.addEventListener('DOMContentLoaded', function() {
             '.demo-feature:nth-child(4) span': { he: 'פריסה מיידית', en: 'Instant deploy', ar: 'نشر فوري' },
 
             // Pricing
-            '#pricing .section-header h2': { he: 'תמחור מותאם', en: 'Tailored pricing', ar: 'تسعير مخصص' },
+            '#pricing .section-header h2': { he: 'החבילות שלנו', en: 'Tailored pricing', ar: 'تسعير مخصص' },
             '#pricing .section-header p': { he: 'בונים הצעה מדויקת לצרכים שלכם — בלי תוויות מחיר מוצגות.', en: 'We tailor a plan to your needs — no public price tags.', ar: 'نُعدّ خطة تناسب احتياجاتك — دون أسعار معروضة.' },
 
             '.pricing-card:nth-child(1) .pricing-header h3': { he: 'מתחילים', en: 'Starter', ar: 'مبتدئ' },
