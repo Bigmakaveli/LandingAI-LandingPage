@@ -154,7 +154,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
             // Stats
             '.hero-stats .stat:nth-child(1) .stat-label': { he: 'אתרים שנוצרו', en: 'Sites created', ar: 'مواقع مُنشأة' },
-            '.hero-stats .stat:nth-child(2) .stat-label': { he: 'מודלים של בינה מלאכותית', en: 'AI models', ar: 'نماذج ذكاء اصطناعي' },
+            '.hero-stats .stat:nth-child(2) .stat-label': { he: 'מודלים של בינה מלאכותית', en: 'AI models', ar: 'أدوات ذكاء اصطناعي' },
             '.hero-stats .stat:nth-child(3) .stat-label': { he: 'זמינות', en: 'Uptime', ar: 'جاهزية' },
 
             // Preview card
