@@ -219,7 +219,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
             // Pricing
             '#pricing .section-header h2': { he: 'החבילות שלנו', en: 'Tailored pricing', ar: 'تسعير مخصص' },
-            '#pricing .section-header p': { he: 'בונים הצעה מדויקת לצרכים שלכם — בלי תוויות מחיר מוצגות.', en: 'We tailor a plan to your needs — no public price tags.', ar: 'نُعدّ خطة تناسب احتياجاتك — دون أسعار معروضة.' },
+            '#pricing .section-header p': { he: 'רוצים להיות חלק מהמהפכה תרשמו עכשיו', en: 'We tailor a plan to your needs — no public price tags.', ar: 'نُعدّ خطة تناسب احتياجاتك — دون أسعار معروضة.' },
 
             '.pricing-card:nth-child(1) .pricing-header h3': { he: 'מתחילים', en: 'Starter', ar: 'مبتدئ' },
             '.pricing-card:nth-child(1) .plan-note': { he: 'תמחור מותאם אישית', en: 'Custom pricing', ar: 'تسعير مخصص' },
