@@ -222,7 +222,7 @@ document.addEventListener('DOMContentLoaded', function() {
             '#pricing .section-header p': { he: 'רוצים להיות חלק מהמהפכה תרשמו עכשיו', en: 'We tailor a plan to your needs — no public price tags.', ar: 'نُعدّ خطة تناسب احتياجاتك — دون أسعار معروضة.' },
 
             '.pricing-card:nth-child(1) .pricing-header h3': { he: 'בסיסי', en: 'Basic', ar: 'أساسي' },
-            '.pricing-card:nth-child(1) .plan-note': { he: 'תמחור מותאם אישית', en: 'Custom pricing', ar: 'تسعير مخصص' },
+            '.pricing-card:nth-child(1) .plan-note': { he: '₪49/לחודש', en: '$49/mo', ar: '₪49/شهريًا' },
             '.pricing-card:nth-child(1) .pricing-features li:nth-child(1)': { he: 'אתר אחד', en: '1 site', ar: 'موقع واحد' },
             '.pricing-card:nth-child(1) .pricing-features li:nth-child(2)': { he: 'מודלי AI בסיסיים', en: 'Basic AI models', ar: 'نماذج ذكاء اصطناعي أساسية' },
             '.pricing-card:nth-child(1) .pricing-features li:nth-child(3)': { he: 'תמיכה במייל', en: 'Email support', ar: 'دعم عبر البريد الإلكتروني' },
@@ -230,14 +230,22 @@ document.addEventListener('DOMContentLoaded', function() {
 
             '.pricing-card.featured .pricing-badge': { he: 'הכי פופולרי', en: 'Most Popular', ar: 'الأكثر شيوعًا' },
             '.pricing-card.featured .pricing-header h3': { he: 'בינוני', en: 'Medium', ar: 'متوسط' },
-            '.pricing-card.featured .plan-note': { he: 'תמחור מותאם אישית', en: 'Custom pricing', ar: 'تسعير مخصص' },
+            '.pricing-card.featured .plan-note': { he: '₪99/לחודש', en: '$99/mo', ar: '₪99/شهريًا' },
             '.pricing-card.featured .pricing-features li:nth-child(1)': { he: 'עד 5 אתרים', en: 'Up to 5 sites', ar: 'حتى 5 مواقع' },
             '.pricing-card.featured .pricing-features li:nth-child(2)': { he: 'מודלי AI מתקדמים', en: 'Advanced AI models', ar: 'نماذج ذكاء اصطناعي متقدمة' },
             '.pricing-card.featured .pricing-features li:nth-child(3)': { he: 'תמיכה בצ׳אט ועדיפות', en: 'Priority chat support', ar: 'دعم دردشة وأولوية' },
             '.pricing-card.featured .pricing-features li:nth-child(4)': { he: 'אינטגרציה למסד נתונים', en: 'Database integration', ar: 'تكامل قاعدة بيانات' },
             '.pricing-card.featured .pricing-features li:nth-child(5)': { he: 'דומיין מותאם אישית', en: 'Custom domain', ar: 'نطاق مخصص' },
 
-            // כרטיס ארגוני הוסר
+            // חבילת פרימיום
+            '.pricing-card:nth-child(3) .pricing-header h3': { he: 'פרימיום', en: 'Premium', ar: 'بريميوم' },
+            '.pricing-card:nth-child(3) .plan-note': { he: '₪199/לחודש', en: '$199/mo', ar: '₪199/شهريًا' },
+            '.pricing-card:nth-child(3) .pricing-features li:nth-child(1)': { he: 'אתרים ללא הגבלה', en: 'Unlimited sites', ar: 'مواقع غير محدودة' },
+            '.pricing-card:nth-child(3) .pricing-features li:nth-child(2)': { he: 'מודלי AI מתקדמים במיוחד', en: 'Elite AI models', ar: 'نماذج ذكاء اصطناعي متقدمة جدًا' },
+            '.pricing-card:nth-child(3) .pricing-features li:nth-child(3)': { he: 'תמיכה 24/7 ומנהל הצלחת לקוח', en: '24/7 support & CSM', ar: 'دعم 24/7 ومدير نجاح عملاء' },
+            '.pricing-card:nth-child(3) .pricing-features li:nth-child(4)': { he: 'אינטגרציות מתקדמות ו‑API', en: 'Advanced integrations & API', ar: 'تكاملات متقدمة وواجهة برمجة' },
+            '.pricing-card:nth-child(3) .pricing-features li:nth-child(5)': { he: 'הרשאות צוות וגיבויים אוטומטיים', en: 'Team roles & automatic backups', ar: 'أدوار الفرق ونسخ احتياطية تلقائية' },
+            '.pricing-card:nth-child(3) .pricing-features li:nth-child(6)': { he: 'SLA וזמינות ברמת ארגון', en: 'SLA & enterprise‑grade uptime', ar: 'SLA وجاهزية بمستوى المؤسسات' },
 
             // CTA
             '.cta h2': { he: 'שולטים באתר עם AI', en: 'Master your site with AI', ar: 'سيطر على موقعك بالذكاء الاصطناعي' },
