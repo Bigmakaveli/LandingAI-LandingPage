@@ -222,11 +222,12 @@ document.addEventListener('DOMContentLoaded', function() {
             '#pricing .section-header p': { he: 'רוצים להיות חלק מהמהפכה תרשמו עכשיו', en: 'We tailor a plan to your needs — no public price tags.', ar: 'نُعدّ خطة تناسب احتياجاتك — دون أسعار معروضة.' },
 
             '.pricing-card:nth-child(1) .pricing-header h3': { he: 'בסיסי', en: 'Basic', ar: 'أساسي' },
-            '.pricing-card:nth-child(1) .plan-note': { he: '₪49/לחודש', en: '$49/mo', ar: '₪49/شهريًا' },
-            '.pricing-card:nth-child(1) .pricing-features li:nth-child(1)': { he: 'אתר אחד', en: '1 site', ar: 'موقع واحد' },
-            '.pricing-card:nth-child(1) .pricing-features li:nth-child(2)': { he: 'מודלי AI בסיסיים', en: 'Basic AI models', ar: 'نماذج ذكاء اصطناعي أساسية' },
-            '.pricing-card:nth-child(1) .pricing-features li:nth-child(3)': { he: 'תמיכה במייל', en: 'Email support', ar: 'دعم عبر البريد الإلكتروني' },
-            '.pricing-card:nth-child(1) .pricing-features li:nth-child(4)': { he: 'אינטגרציה ל‑GitHub', en: 'GitHub integration', ar: 'تكامل مع GitHub' },
+            '.pricing-card:nth-child(1) .plan-note': { he: '₪70/לחודש', en: '$70/mo', ar: '₪70/شهريًا' },
+            '.pricing-card:nth-child(1) .pricing-features li:nth-child(1)': { he: 'אתר מלא מוכן תוך דקות', en: 'Full website ready in minutes', ar: 'موقع كامل جاهز خلال دقائق' },
+            '.pricing-card:nth-child(1) .pricing-features li:nth-child(2)': { he: 'עד 10 עמודים', en: 'Up to 10 pages', ar: 'حتى 10 صفحات' },
+            '.pricing-card:nth-child(1) .pricing-features li:nth-child(3)': { he: 'דומיין חינם לשנה', en: 'Free domain for one year', ar: 'نطاق مجاني لمدة سنة' },
+            '.pricing-card:nth-child(1) .pricing-features li:nth-child(4)': { he: 'חיבור ל‑WhatsApp ול‑Google Maps', en: 'WhatsApp & Google Maps integration', ar: 'تكامل مع WhatsApp وGoogle Maps' },
+            '.pricing-card:nth-child(1) .pricing-features li:nth-child(5)': { he: 'תמיכה בצ׳אט', en: 'Chat support', ar: 'دعم عبر الدردشة' },
 
             '.pricing-card.featured .pricing-badge': { he: 'הכי פופולרי', en: 'Most Popular', ar: 'الأكثر شيوعًا' },
             '.pricing-card.featured .pricing-header h3': { he: 'בינוני', en: 'Medium', ar: 'متوسط' },
