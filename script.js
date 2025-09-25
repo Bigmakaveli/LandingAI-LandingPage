@@ -237,14 +237,7 @@ document.addEventListener('DOMContentLoaded', function() {
             '.pricing-card.featured .pricing-features li:nth-child(4)': { he: 'אינטגרציה למסד נתונים', en: 'Database integration', ar: 'تكامل قاعدة بيانات' },
             '.pricing-card.featured .pricing-features li:nth-child(5)': { he: 'דומיין מותאם אישית', en: 'Custom domain', ar: 'نطاق مخصص' },
 
-            '.pricing-card:nth-child(3) .pricing-header h3': { he: 'ארגוני', en: 'Enterprise', ar: 'مؤسسي' },
-            '.pricing-card:nth-child(3) .plan-note': { he: 'תמחור מותאם אישית', en: 'Custom pricing', ar: 'تسعير مخصص' },
-            '.pricing-card:nth-child(3) .pricing-features li:nth-child(1)': { he: 'הכול בחבילת המקצועי', en: 'Everything in Pro', ar: 'كل ما في الاحترافي' },
-            '.pricing-card:nth-child(3) .pricing-features li:nth-child(2)': { he: 'פתרון White‑label', en: 'White‑label solution', ar: 'حل بعلامة بيضاء' },
-            '.pricing-card:nth-child(3) .pricing-features li:nth-child(3)': { he: 'תמיכה ייעודית', en: 'Dedicated support', ar: 'دعم مخصص' },
-            '.pricing-card:nth-child(3) .pricing-features li:nth-child(4)': { he: 'אינטגרציות מותאמות', en: 'Custom integrations', ar: 'تكاملات مخصصة' },
-            '.pricing-card:nth-child(3) .pricing-features li:nth-child(5)': { he: 'התחייבות SLA', en: 'SLA commitment', ar: 'التزام SLA' },
-            '.pricing-card:nth-child(3) .btn .btn-label': { he: 'צור קשר עם המכירות', en: 'Contact sales', ar: 'تواصل مع المبيعات' },
+            // כרטיס ארגוני הוסר
 
             // CTA
             '.cta h2': { he: 'שולטים באתר עם AI', en: 'Master your site with AI', ar: 'سيطر على موقعك بالذكاء الاصطناعي' },
